@@ -19,8 +19,9 @@ displayLocation = (position) => {
     const lng = position.coords.longitude;
 
     const latlng = { lat, lng };
-    showMap(latlng);
+    showMap(latlng, lat, lng);
     createMarker(latlng);
+    mapArea.setAttribute("style","width:100%;height: 500px;");
     mapArea.style.display = "block";
     getGeolocation(lat, lng);
 }
@@ -49,12 +50,29 @@ showError = (error) => {
             break;
     }
 }
-showMap = (latlng) => {
+showMap = (latlng, lat, lng) => {
     let mapOptions = {
         center: latlng,
         zoom: 17
     };
     Gmap = new google.maps.Map(mapArea, mapOptions);
+    Gmap.addListener('drag', () => {
+        Gmarker.setPosition(Gmap.getCenter());
+    });
+    Gmap.addListener('dragend', () => {
+        Gmarker.setPosition(Gmap.getCenter());
+    });
+    Gmap.addListener('idle', function() {
+        Gmarker.setPosition(this.getCenter());
+        if (Gmarker.getPosition().lat != lat || Gmarker.getPosition().lng != lng) {
+            setTimeout(() => {
+                updatePosition(Gmap.getCenter().lat(), Gmap.getCenter().lng());
+            }, 2000);
+        }
+    });
+}
+updatePosition = (lat, lng) => {
+    getGeolocation(lat, lng);
 }
 createMarker = (latlng) => {
     let makerOptions = {
@@ -77,6 +95,7 @@ getGeolocation = (lat, lng) => {
 
 populateCard = (geoResults) => {
     console.log(geoResults);
+    locationsAvailable.innerHTML = '';
     geoResults.map(geoResults => {
         let addressCard = document.createElement('div');
         addressCard.setAttribute('id', geoResults.place_id);
