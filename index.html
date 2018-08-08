@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+        crossorigin="anonymous">
+    <title>Location to address</title>
+</head>
+
+<body>
+    <div class="container">
+        <h3 class="page-header">Shipping address</h3>
+        <p>You can click the button below to use your current location as your shipping address</p>
+        <p>Notice that location could be inaccurate.</p>
+        <div id="map"></div>
+        <div id="locationList"></div>
+        <button type="button" id="showMe" class="btn btn-info">
+            <i class="fas fa-map-marker-alt"></i>Use my location</button>
+        <form id="frmShipping">
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <textarea id="txtDeatailAddress" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="locality">Locality:</label>
+                <input type="text" class="form-control" id="txtLocality">
+            </div>
+            <div class="form-group">
+                <label for="city">City/District/Town:</label>
+                <input type="text" class="form-control" id="txtCity">
+            </div>
+            <div class="form-group">
+                <label for="pin">Pin Code:</label>
+                <input type="text" class="form-control" id="txtPin">
+            </div>
+            <div class="form-group">
+                <label for="landmark">Landmark:</label>
+                <input type="text" class="form-control" id="txtLandmark">
+            </div>
+            <div class="form-group">
+                <label for="state">State:</label>
+                <input type="text" class="form-control" id="txtState">
+            </div>
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-save"></i>Save
+            </button>
+        </form>
+    </div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGCql0HlN4C_D7B2BcIIhtuFvjrdfvoew"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
